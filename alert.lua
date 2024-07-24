@@ -8,6 +8,7 @@ local mons = {peripheral.find("monitor")}
 for i,mon in pairs(mons) do
     local w,h = mon.getSize()
     mon.setBackgroundColor(colors[type])
+    mon.setTextColor(colors.white)
     mon.clear()
     mon.setTextScale(3)
     w,h = mon.getSize()
