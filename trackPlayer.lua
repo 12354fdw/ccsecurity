@@ -30,7 +30,7 @@ function render()
     title.setTextColor(colors.white)
     bg.clear()
     title.clear()
-    title.write("trackPlayer [TEST]")
+    title.write("trackPlayer [V.1.0]")
     local pos = 2
     for i,v in pairs(data) do
         bg.setCursorPos(1,pos)
@@ -41,12 +41,14 @@ end
 
 while true do
     for i,v in pairs(tracking) do
-        if not data[v] then data[v] = {} end
         local td = playerDetec.getPlayerPos(v)
-        data[v] = td
-        local dx,dy,dz = pos.x-td.x,pos.y-td.y,pos.z-td.z
-        local d = math.sqrt(dx^2+dy^2+dz^2)
-        data[v].distance = d
+        if td then
+            if not data[v] then data[v] = {} end
+            data[v] = td
+            local dx,dy,dz = pos.x-td.x,pos.y-td.y,pos.z-td.z
+            local d = math.sqrt(dx^2+dy^2+dz^2)
+            data[v].distance = d
+        end
     end
     render()
     sleep(0.1)
